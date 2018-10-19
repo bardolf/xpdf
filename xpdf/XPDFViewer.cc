@@ -1656,20 +1656,22 @@ void XPDFViewer::initToolbar(Widget parent) {
   XtSetArg(args[n], XmNleftAttachment, XmATTACH_FORM); ++n;
   XtSetArg(args[n], XmNtopAttachment, XmATTACH_FORM); ++n;
   XtSetArg(args[n], XmNbottomAttachment, XmATTACH_FORM); ++n;
-  XtSetArg(args[n], XmNmarginWidth, 6); ++n;
+  XtSetArg(args[n], XmNmarginWidth, 26); ++n;
+  XtSetArg(args[n], XmNmarginHeight, 26); ++n;
   XtSetArg(args[n], XmNsensitive, False); ++n;
   XtSetArg(args[n], XmNlabelString, emptyString); ++n;
   backBtn = XmCreatePushButton(toolBar, "back", args, n);
   addToolTip(backBtn, "Back");
-  XtManageChild(backBtn);
+//   XtManageChild(backBtn);
   XtAddCallback(backBtn, XmNactivateCallback,
 		&backCbk, (XtPointer)this);
   n = 0;
   XtSetArg(args[n], XmNleftAttachment, XmATTACH_WIDGET); ++n;
-  XtSetArg(args[n], XmNleftWidget, backBtn); ++n;
+//   XtSetArg(args[n], XmNleftWidget, backBtn); ++n;
   XtSetArg(args[n], XmNtopAttachment, XmATTACH_FORM); ++n;
   XtSetArg(args[n], XmNbottomAttachment, XmATTACH_FORM); ++n;
-  XtSetArg(args[n], XmNmarginWidth, 6); ++n;
+  XtSetArg(args[n], XmNmarginWidth, 26); ++n;
+  XtSetArg(args[n], XmNmarginHeight, 26); ++n;
   XtSetArg(args[n], XmNsensitive, False); ++n;
   XtSetArg(args[n], XmNlabelString, emptyString); ++n;
   prevTenPageBtn = XmCreatePushButton(toolBar, "prevTenPage", args, n);
@@ -1682,7 +1684,8 @@ void XPDFViewer::initToolbar(Widget parent) {
   XtSetArg(args[n], XmNleftWidget, prevTenPageBtn); ++n;
   XtSetArg(args[n], XmNtopAttachment, XmATTACH_FORM); ++n;
   XtSetArg(args[n], XmNbottomAttachment, XmATTACH_FORM); ++n;
-  XtSetArg(args[n], XmNmarginWidth, 6); ++n;
+  XtSetArg(args[n], XmNmarginWidth, 26); ++n;
+  XtSetArg(args[n], XmNmarginHeight, 26); ++n;
   XtSetArg(args[n], XmNsensitive, False); ++n;
   XtSetArg(args[n], XmNlabelString, emptyString); ++n;
   prevPageBtn = XmCreatePushButton(toolBar, "prevPage", args, n);
@@ -1695,7 +1698,8 @@ void XPDFViewer::initToolbar(Widget parent) {
   XtSetArg(args[n], XmNleftWidget, prevPageBtn); ++n;
   XtSetArg(args[n], XmNtopAttachment, XmATTACH_FORM); ++n;
   XtSetArg(args[n], XmNbottomAttachment, XmATTACH_FORM); ++n;
-  XtSetArg(args[n], XmNmarginWidth, 6); ++n;
+  XtSetArg(args[n], XmNmarginWidth, 26); ++n;
+  XtSetArg(args[n], XmNmarginHeight, 26); ++n;
   XtSetArg(args[n], XmNsensitive, False); ++n;
   XtSetArg(args[n], XmNlabelString, emptyString); ++n;
   nextPageBtn = XmCreatePushButton(toolBar, "nextPage", args, n);
@@ -1708,7 +1712,8 @@ void XPDFViewer::initToolbar(Widget parent) {
   XtSetArg(args[n], XmNleftWidget, nextPageBtn); ++n;
   XtSetArg(args[n], XmNtopAttachment, XmATTACH_FORM); ++n;
   XtSetArg(args[n], XmNbottomAttachment, XmATTACH_FORM); ++n;
-  XtSetArg(args[n], XmNmarginWidth, 6); ++n;
+  XtSetArg(args[n], XmNmarginWidth, 26); ++n;
+  XtSetArg(args[n], XmNmarginHeight, 26); ++n;
   XtSetArg(args[n], XmNsensitive, False); ++n;
   XtSetArg(args[n], XmNlabelString, emptyString); ++n;
   nextTenPageBtn = XmCreatePushButton(toolBar, "nextTenPage", args, n);
@@ -1721,52 +1726,64 @@ void XPDFViewer::initToolbar(Widget parent) {
   XtSetArg(args[n], XmNleftWidget, nextTenPageBtn); ++n;
   XtSetArg(args[n], XmNtopAttachment, XmATTACH_FORM); ++n;
   XtSetArg(args[n], XmNbottomAttachment, XmATTACH_FORM); ++n;
-  XtSetArg(args[n], XmNmarginWidth, 6); ++n;
+  XtSetArg(args[n], XmNmarginWidth, 26); ++n;
+  XtSetArg(args[n], XmNmarginHeight, 26); ++n;
   XtSetArg(args[n], XmNsensitive, False); ++n;
   XtSetArg(args[n], XmNlabelString, emptyString); ++n;
   forwardBtn = XmCreatePushButton(toolBar, "forward", args, n);
   addToolTip(forwardBtn, "Forward");
-  XtManageChild(forwardBtn);
+//   XtManageChild(forwardBtn);
   XtAddCallback(forwardBtn, XmNactivateCallback,
 		&forwardCbk, (XtPointer)this);
 
   // page number display
+  XmFontList pageFont = createFontList("-*-fixed-*-*-*-*-*-*-*-*-*-*-iso8859-*");
+
   n = 0;
   XtSetArg(args[n], XmNleftAttachment, XmATTACH_WIDGET); ++n;
-  XtSetArg(args[n], XmNleftWidget, forwardBtn); ++n;
-  XtSetArg(args[n], XmNtopAttachment, XmATTACH_FORM); ++n;
+  XtSetArg(args[n], XmNleftWidget, nextTenPageBtn); ++n;
+//   XtSetArg(args[n], XmNtopAttachment, XmATTACH_FORM); ++n;
   XtSetArg(args[n], XmNbottomAttachment, XmATTACH_FORM); ++n;
   s = XmStringCreateLocalized("Page ");
   XtSetArg(args[n], XmNlabelString, s); ++n;
   label = XmCreateLabel(toolBar, "pageLabel", args, n);
   XmStringFree(s);
-  XtManageChild(label);
+//   XtManageChild(label);
+ 
+//   XtAddCallback(pageNumText, XmNactivateCallback,
+// 		&pageNumCbk, (XtPointer)this);
   n = 0;
-  XtSetArg(args[n], XmNleftAttachment, XmATTACH_WIDGET); ++n;
-  XtSetArg(args[n], XmNleftWidget, label); ++n;
-  XtSetArg(args[n], XmNtopAttachment, XmATTACH_FORM); ++n;
-  XtSetArg(args[n], XmNbottomAttachment, XmATTACH_FORM); ++n;
-  XtSetArg(args[n], XmNmarginWidth, 3); ++n;
-  XtSetArg(args[n], XmNmarginHeight, 3); ++n;
-  XtSetArg(args[n], XmNcolumns, 5); ++n;
-  pageNumText = XmCreateTextField(toolBar, "pageNum", args, n);
-  XtManageChild(pageNumText);
-  XtAddCallback(pageNumText, XmNactivateCallback,
-		&pageNumCbk, (XtPointer)this);
-  n = 0;
-  XtSetArg(args[n], XmNleftAttachment, XmATTACH_WIDGET); ++n;
+  XtSetArg(args[n], XmNrightAttachment, XmATTACH_FORM); ++n;
   XtSetArg(args[n], XmNleftWidget, pageNumText); ++n;
-  XtSetArg(args[n], XmNtopAttachment, XmATTACH_FORM); ++n;
+//   XtSetArg(args[n], XmNtopAttachment, XmATTACH_FORM); ++n;
   XtSetArg(args[n], XmNbottomAttachment, XmATTACH_FORM); ++n;
-  s = XmStringCreateLocalized(" of 00000");
+  s = XmStringCreateLocalized(" / 00000");
   XtSetArg(args[n], XmNlabelString, s); ++n;
   XtSetArg(args[n], XmNalignment, XmALIGNMENT_BEGINNING); ++n;
   XtSetArg(args[n], XmNrecomputeSize, False); ++n;
+  XtSetArg(args[n], XmNfontList, pageFont); ++n;
   pageCountLabel = XmCreateLabel(toolBar, "pageCountLabel", args, n);
   XmStringFree(s);
   XtManageChild(pageCountLabel);
-  s = XmStringCreateLocalized(" of 0");
+  s = XmStringCreateLocalized(" / 0");
   XtVaSetValues(pageCountLabel, XmNlabelString, s, NULL);
+  XmStringFree(s);
+
+ n = 0;
+  XtSetArg(args[n], XmNrightAttachment, XmATTACH_WIDGET); ++n;
+  XtSetArg(args[n], XmNrightWidget, pageCountLabel); ++n;
+//   XtSetArg(args[n], XmNtopAttachment, XmATTACH_FORM); ++n;
+  XtSetArg(args[n], XmNbottomAttachment, XmATTACH_FORM); ++n;
+  XtSetArg(args[n], XmNmarginLeft, 20); ++n;
+//   XtSetArg(args[n], XmNmarginWidth, 3); ++n;
+//   XtSetArg(args[n], XmNmarginHeight, 3); ++n;
+//   XtSetArg(args[n], XmNcolumns, 5); ++n;
+
+  s = XmStringCreateLocalized("0");
+  XtSetArg(args[n], XmNlabelString, s); ++n;
+  XtSetArg(args[n], XmNfontList, pageFont); ++n;
+  pageNumText = XmCreateLabel(toolBar, "pageNum", args, n);
+  XtManageChild(pageNumText);
   XmStringFree(s);
 
   // zoom menu
@@ -1794,7 +1811,7 @@ void XPDFViewer::initToolbar(Widget parent) {
   addToolTip(zoomComboBox, "Zoom");
   XtAddCallback(zoomComboBox, XmNselectionCallback,
 		&zoomComboBoxCbk, (XtPointer)this);
-  XtManageChild(zoomComboBox);
+//   XtManageChild(zoomComboBox);
   zoomWidget = zoomComboBox;
 #else
   Widget menuPane;
@@ -1824,7 +1841,7 @@ void XPDFViewer::initToolbar(Widget parent) {
   XtSetArg(args[n], XmNsubMenuId, menuPane); ++n;
   zoomMenu = XmCreateOptionMenu(toolBar, "zoomMenu", args, n);
   addToolTip(zoomMenu, "Zoom");
-  XtManageChild(zoomMenu);
+//   XtManageChild(zoomMenu);
   zoomWidget = zoomMenu;
 #endif
 
@@ -1838,7 +1855,7 @@ void XPDFViewer::initToolbar(Widget parent) {
   XtSetArg(args[n], XmNlabelString, emptyString); ++n;
   findBtn = XmCreatePushButton(toolBar, "find", args, n);
   addToolTip(findBtn, "Find");
-  XtManageChild(findBtn);
+//   XtManageChild(findBtn);
   XtAddCallback(findBtn, XmNactivateCallback,
 		&findCbk, (XtPointer)this);
   n = 0;
@@ -1850,7 +1867,7 @@ void XPDFViewer::initToolbar(Widget parent) {
   XtSetArg(args[n], XmNlabelString, emptyString); ++n;
   printBtn = XmCreatePushButton(toolBar, "print", args, n);
   addToolTip(printBtn, "Print");
-  XtManageChild(printBtn);
+//   XtManageChild(printBtn);
   XtAddCallback(printBtn, XmNactivateCallback,
 		&printCbk, (XtPointer)this);
   n = 0;
@@ -1862,7 +1879,7 @@ void XPDFViewer::initToolbar(Widget parent) {
   XtSetArg(args[n], XmNlabelString, emptyString); ++n;
   aboutBtn = XmCreatePushButton(toolBar, "about", args, n);
   addToolTip(aboutBtn, "About / help");
-  XtManageChild(aboutBtn);
+//   XtManageChild(aboutBtn);
   XtAddCallback(aboutBtn, XmNactivateCallback,
 		&aboutCbk, (XtPointer)this);
   lastBtn = aboutBtn;
@@ -1877,7 +1894,7 @@ void XPDFViewer::initToolbar(Widget parent) {
   XtSetArg(args[n], XmNlabelString, s); ++n;
   quitBtn = XmCreatePushButton(toolBar, "quit", args, n);
   XmStringFree(s);
-  XtManageChild(quitBtn);
+//   XtManageChild(quitBtn);
   XtAddCallback(quitBtn, XmNactivateCallback,
 		&quitCbk, (XtPointer)this);
 
@@ -1886,7 +1903,7 @@ void XPDFViewer::initToolbar(Widget parent) {
   XtSetArg(args[n], XmNleftAttachment, XmATTACH_WIDGET); ++n;
   XtSetArg(args[n], XmNleftWidget, lastBtn); ++n;
   XtSetArg(args[n], XmNrightAttachment, XmATTACH_WIDGET); ++n;
-  XtSetArg(args[n], XmNrightWidget, quitBtn); ++n;
+//   XtSetArg(args[n], XmNrightWidget, quitBtn); ++n;
   XtSetArg(args[n], XmNtopAttachment, XmATTACH_FORM); ++n;
   XtSetArg(args[n], XmNbottomAttachment, XmATTACH_FORM); ++n;
   s = XmStringCreateLocalized("");
@@ -2249,60 +2266,7 @@ void XPDFViewer::mapWindow() {
 					      forwardArrowDis_height,
 					      fg, bg, depth),
 		  NULL);
-    XtVaSetValues(findBtn, XmNlabelType, XmPIXMAP,
-		  XmNlabelPixmap,
-		  XCreatePixmapFromBitmapData(display, XtWindow(toolBar),
-					      (char *)find_bits,
-					      find_width,
-					      find_height,
-					      fg, bg, depth),
-		  XmNarmPixmap,
-		  XCreatePixmapFromBitmapData(display, XtWindow(toolBar),
-					      (char *)find_bits,
-					      find_width,
-					      find_height,
-					      fg, arm, depth),
-		  XmNlabelInsensitivePixmap,
-		  XCreatePixmapFromBitmapData(display, XtWindow(toolBar),
-					      (char *)findDis_bits,
-					      findDis_width,
-					      findDis_height,
-					      fg, bg, depth),
-		  NULL);
-    XtVaSetValues(printBtn, XmNlabelType, XmPIXMAP,
-		  XmNlabelPixmap,
-		  XCreatePixmapFromBitmapData(display, XtWindow(toolBar),
-					      (char *)print_bits,
-					      print_width,
-					      print_height,
-					      fg, bg, depth),
-		  XmNarmPixmap,
-		  XCreatePixmapFromBitmapData(display, XtWindow(toolBar),
-					      (char *)print_bits,
-					      print_width,
-					      print_height,
-					      fg, arm, depth),
-		  XmNlabelInsensitivePixmap,
-		  XCreatePixmapFromBitmapData(display, XtWindow(toolBar),
-					      (char *)printDis_bits,
-					      printDis_width,
-					      printDis_height,
-					      fg, bg, depth),
-		  NULL);
-    XtVaSetValues(aboutBtn, XmNlabelType, XmPIXMAP,
-		  XmNlabelPixmap,
-		  XCreatePixmapFromBitmapData(display, XtWindow(toolBar),
-					      (char *)about_bits,
-					      about_width,
-					      about_height,
-					      fg, bg, depth),
-		  XmNarmPixmap,
-		  XCreatePixmapFromBitmapData(display, XtWindow(toolBar),
-					      (char *)about_bits,
-					      about_width,
-					      about_height,
-					      fg, arm, depth),
-		  NULL);
+   
   }
 }
 
@@ -2663,7 +2627,10 @@ void XPDFViewer::updateCbk(void *data, GString *fileName,
       XtVaSetValues(viewer->linkLabel, XmNlabelString, s, NULL);
       XmStringFree(s);
       sprintf(buf, "%d", pageNum);
-      XmTextFieldSetString(viewer->pageNumText, buf);
+    //   XmTextFieldSetString(viewer->pageNumText, buf);
+     s = XmStringCreateLocalized(buf);
+     XtVaSetValues(viewer->pageNumText, XmNlabelString, s, NULL);
+
       XtVaSetValues(viewer->prevTenPageBtn, XmNsensitive,
 		    pageNum > 1, NULL);
       XtVaSetValues(viewer->prevPageBtn, XmNsensitive,
@@ -2679,7 +2646,7 @@ void XPDFViewer::updateCbk(void *data, GString *fileName,
     }
 
     if (numPages >= 0) {
-      sprintf(buf, " of %d", numPages);
+      sprintf(buf, " / %d", numPages);
       s = XmStringCreateLocalized(buf);
       XtVaSetValues(viewer->pageCountLabel, XmNlabelString, s, NULL);
       XmStringFree(s);
